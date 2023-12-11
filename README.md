@@ -35,6 +35,7 @@ By the end of this experiment, you will:
 - **requirements.txt**: Lists dependencies and packages needed to run the project.
 - **train_pipeline.py**: Code for training the machine learning models.
 
+```
 Deploy-ML-Projects-tutorial/
 |-- config/
 |   |-- config.yml
@@ -63,8 +64,7 @@ Deploy-ML-Projects-tutorial/
 |-- predict.py
 |-- requirements.txt
 |-- train_pipeline.py
-
-
+```
 
 ## Learning Objectives (Notebooks)
 
