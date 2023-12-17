@@ -33,8 +33,8 @@ def run_training() -> None:
 
     # Pipeline fitting
     titanic_pipe.fit(X_train,y_train)
-    y_pred = titanic_pipe.predict(X_test)
-    print("Accuracy(in %):", accuracy_score(y_test, y_pred)*100)
+    #y_pred = titanic_pipe.predict(X_test)
+    #print("Accuracy(in %):", accuracy_score(y_test, y_pred)*100)
 
     # persist trained model
     save_pipeline(pipeline_to_persist= titanic_pipe)
