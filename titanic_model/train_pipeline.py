@@ -12,6 +12,13 @@ from titanic_model.config.core import config
 from titanic_model.pipeline import titanic_pipe
 from titanic_model.processing.data_manager import load_dataset, save_pipeline
 
+
+# Training Function: Defines a function run_training responsible for training the machine learning model. The function performs the following steps:
+# Loads the training dataset using load_dataset.
+# Splits the dataset into training and testing sets using train_test_split.
+# Fits the machine learning pipeline (titanic_pipe) on the training data.
+# Persists the trained model using save_pipeline.
+
 def run_training() -> None:
     
     """
@@ -40,5 +47,13 @@ def run_training() -> None:
     save_pipeline(pipeline_to_persist= titanic_pipe)
     # printing the score
     
+    
+# Script Execution: If the script is executed directly (not imported as a module), it calls the run_training function. 
+# This block ensures that the training process is initiated when the script is run.
 if __name__ == "__main__":
     run_training()
+    
+    
+# In summary, this script is designed to read the Titanic training dataset, split it into training and testing sets, 
+# train a machine learning model using the specified pipeline (titanic_pipe), and save the trained model for later use. 
+# The script can be run independently to train the model.

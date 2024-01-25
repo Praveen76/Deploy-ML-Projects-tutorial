@@ -33,7 +33,7 @@ def validate_inputs(*, input_df: pd.DataFrame) -> Tuple[pd.DataFrame, Optional[d
 
 
 class DataInputSchema(BaseModel):
-    PassengerId:Optional[int]
+    PassengerId: Optional[int]
     Pclass: Optional[int]
     Name: Optional[str]
     Sex: Optional[str]

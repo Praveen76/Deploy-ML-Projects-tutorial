@@ -10,8 +10,6 @@ from sklearn.model_selection import train_test_split
 from titanic_model.config.core import config
 from titanic_model.processing.data_manager import _load_raw_dataset
 
-
-
 @pytest.fixture
 def sample_input_data():
     data = _load_raw_dataset(file_name=config.app_config.training_data_file)

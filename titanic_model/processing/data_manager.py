@@ -14,8 +14,9 @@ from titanic_model import __version__ as _version
 from titanic_model.config.core import DATASET_DIR, TRAINED_MODEL_DIR, config
 
 
-##  Pre-Pipeline Preparation
-
+##  A: Pre-Pipeline Preparation
+# Pre-Pipeline Preparation: Defines two functions (get_title and pre_pipeline_preparation) for preprocessing data 
+# before building the machine learning pipeline.
 # 1. Extracts the title (Mr, Ms, etc) from the name variable
 def get_title(passenger:str) -> str:
     line = passenger
@@ -41,14 +42,16 @@ def pre_pipeline_preparation(*, data_frame: pd.DataFrame) -> pd.DataFrame:
 
     data_frame['FamilySize'] = data_frame['SibSp'] + data_frame['Parch'] + 1  # Family size
 
-    data_frame['Has_cabin']=data_frame['Cabin'].apply(f1)               #  processing cabin 
+    data_frame['Has_cabin']= data_frame['Cabin'].apply(f1)               #  processing cabin 
 
     # drop unnecessary variables
     data_frame.drop(labels=config.model_config.unused_fields, axis=1, inplace=True)
 
     return data_frame
 
-
+# B: Data Loading: Defines two functions (_load_raw_dataset and load_dataset) for loading datasets. 
+# 1. _load_raw_dataset loads the raw dataset without any preprocessing, while 
+# 2. load_dataset loads the dataset and applies the preprocessing steps defined in pre_pipeline_preparation.
 def _load_raw_dataset(*, file_name: str) -> pd.DataFrame:
     dataframe = pd.read_csv(Path(f"{DATASET_DIR}/{file_name}"))
     return dataframe
@@ -59,7 +62,8 @@ def load_dataset(*, file_name: str) -> pd.DataFrame:
 
     return transformed
 
-
+# C: Pipeline Persistence: Defines functions (save_pipeline and load_pipeline) for saving and loading machine learning pipelines. 
+# 1. save_pipeline saves the versioned model, and load_pipeline loads a persisted pipeline.
 def save_pipeline(*, pipeline_to_persist: Pipeline) -> None:
     """Persist the pipeline.
     Saves the versioned model, and overwrites any previous
@@ -83,7 +87,8 @@ def load_pipeline(*, file_name: str) -> Pipeline:
     trained_model = joblib.load(filename=file_path)
     return trained_model
 
-
+# C: Remove Old Pipelines: Defines a function (remove_old_pipelines) to remove old model pipelines. 
+# This ensures there is a simple one-to-one mapping between the package version and the model version to be imported and used by other applications.
 def remove_old_pipelines(*, files_to_keep: t.List[str]) -> None:
     """
     Remove old model pipelines.
