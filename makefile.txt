@@ -6,7 +6,8 @@ PIP := pip
 
 # Targets and Rules
 install:
-	$(PIP) install -r requirements.txt
+	$(PIP) install -r ./requirements/requirements.txt
+	$(PIP) install -r ./requirements/test_requirements.txt
 
 format:
 	$(PYTHON) -m black .
